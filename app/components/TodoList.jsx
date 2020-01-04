@@ -1,0 +1,26 @@
+const React = require('react');
+const Todo = require('Todo');
+
+const TodoList = React.createClass({
+    render: function () {
+        const {todos} = this.props;
+        console.log(todos);
+
+        const renderTodos = () => {
+          return todos.map((todo) => {
+              return (
+                  <Todo key={todo.id} {...todo} />
+              );
+          });
+        };
+
+        return(
+            <div>
+                List
+                {renderTodos()}
+            </div>
+        );
+    }
+});
+
+module.exports = TodoList;
