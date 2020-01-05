@@ -4,8 +4,6 @@ const Todo = require('Todo');
 const TodoList = React.createClass({
     render: function () {
         const {todos} = this.props;
-        console.log(todos);
-
         const renderTodos = () => {
           return todos.map((todo) => {
               return (
