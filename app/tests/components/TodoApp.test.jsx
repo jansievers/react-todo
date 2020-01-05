@@ -20,4 +20,25 @@ describe('TodoApp', () => {
 
     expect(todoApp.state.todos[0].text).toBe(todoText);
   });
+
+  it('should add todo', () => {
+    const todoText = 'test text';
+    const todoApp = TestUtils.renderIntoDocument(<TodoApp/>);
+
+    todoApp.setState({todos: []});
+    todoApp.handleAddTodo(todoText);
+
+    expect(todoApp.state.todos[0].text).toBe(todoText);
+  });
+
+  it('should toggle', () => {
+    const todoData = {id: 11, text: 'Test features', completed: false};
+
+    const todoApp = TestUtils.renderIntoDocument(<TodoApp/>);
+    todoApp.setState({todos:[todoData]});
+
+    expect(todoApp.state.todos[0].completed).toBe(false);
+    todoApp.handleToggle(11);
+    expect(todoApp.state.todos[0].completed).toBe(true);
+  });
 });
