@@ -5,8 +5,8 @@ const actions = require('actions');
 export var AddTodo = React.createClass({
     handleSubmit: function (e) {
         e.preventDefault();
-        var {dispatch} = this.props;
-        var todoText = this.refs.todoText.value;
+        const {dispatch} = this.props;
+        const todoText = this.refs.todoText.value;
 
         if (todoText.length > 0) {
             this.refs.todoText.value = '';

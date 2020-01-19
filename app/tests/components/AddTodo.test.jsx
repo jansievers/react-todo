@@ -16,7 +16,7 @@ describe('AddTodo', () => {
         const action = {
             type: 'ADD_TODO',
             text: todoText
-        }
+        };
         const spy = expect.createSpy();
         const addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
         const $el = $(ReactDOM.findDOMNode(addTodo));
