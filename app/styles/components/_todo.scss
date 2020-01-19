@@ -1,7 +1,7 @@
 .todo {
-  display: flex;
   align-items: center;
   cursor: pointer;
+  display: flex;
   padding: 1rem;
   transition: background .3s ease;
 
@@ -22,8 +22,8 @@
   color: #999;
 }
 
-.todo__completed {
-  p, .todo__subtext {
+.todo-completed {
+  p, .todo-subtext {
     color: $light-color;
     text-decoration: line-through;
   }

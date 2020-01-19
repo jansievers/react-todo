@@ -20,11 +20,11 @@ store.dispatch(actions.toggleShowCompleted());
 $(document).foundation();
 
 // App css
-require('style!css!sass!applicationStyles');
+require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
     <Provider store={store}>
         <TodoApp/>
     </Provider>,
-  document.getElementById('app')
+    document.getElementById('app')
 );

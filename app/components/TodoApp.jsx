@@ -1,30 +1,31 @@
-const React = require('react');
-const uuid = require('node-uuid');
-const moment = require('moment');
+var React = require('react');
+var uuid = require('node-uuid');
+var moment = require('moment');
 
-const TodoList = require('TodoList');
-const AddTodo = require('AddTodo');
+import TodoList from 'TodoList'
+import AddTodo from 'AddTodo';
+
 const TodoSearch = require('TodoSearch');
 const TodoAPI = require('TodoAPI');
 
 const TodoApp = React.createClass({
-    getInitialState: function() {
-      return {
-        showCompleted: false,
-        searchText: '',
-        todos: TodoAPI.getTodos()
-      };
+    getInitialState: function () {
+        return {
+            showCompleted: false,
+            searchText: '',
+            todos: TodoAPI.getTodos()
+        };
     },
-    componentDidUpdate: function() {
-        TodoAPI.setTodos(this.state.todos)
+    componentDidUpdate: function () {
+        TodoAPI.setTodos(this.state.todos);
     },
-    handleAddTodo: function(todoName) {
+    handleAddTodo: function (text) {
         this.setState({
             todos: [
                 ...this.state.todos,
                 {
                     id: uuid(),
-                    text: todoName,
+                    text: text,
                     completed: false,
                     createdAt: moment().unix(),
                     completedAt: undefined
@@ -32,7 +33,7 @@ const TodoApp = React.createClass({
             ]
         });
     },
-    handleSearch: function(showCompleted, searchText) {
+    handleSearch: function (showCompleted, searchText) {
         this.setState({
             showCompleted: showCompleted,
             searchText: searchText.toLowerCase()
@@ -42,7 +43,7 @@ const TodoApp = React.createClass({
         const {todos, showCompleted, searchText} = this.state;
         const filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
-        return(
+        return (
             <div>
                 <h1 className="page-title">Todo App</h1>
 
@@ -51,12 +52,12 @@ const TodoApp = React.createClass({
                         <div className="container">
                             <TodoSearch onSearch={this.handleSearch}/>
                             <TodoList/>
-                            <AddTodo onHandleAddTodo={this.handleAddTodo} />
+                            <AddTodo onAddTodo={this.handleAddTodo}/>
                         </div>
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 });
 
