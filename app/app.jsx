@@ -7,16 +7,20 @@ const TodoApp = require('TodoApp');
 
 const actions = require('actions');
 const store = require('configureStore').configure();
+const TodoAPI = require('TodoAPI');
 
 store.subscribe(() => {
-    console.log('New state', store.getState());
+    let state = store.getState();
+    TodoAPI.setTodos(state.todos);
 });
 
+const initialTodos = TodoAPI.getTodos();
+store.dispatch(actions.addTodos(initialTodos));
 // Load foundation
 $(document).foundation();
 
 // App css
-require('style!css!sass!applicationStyles')
+require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
     <Provider store={store}>

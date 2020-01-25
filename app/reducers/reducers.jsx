@@ -7,8 +7,7 @@ export const searchTextReducer = (state = '', action) => {
             return action.searchText;
         default:
             return state;
-    }
-    ;
+    };
 };
 
 export const showCompletedReducer = (state = false, action) => {
@@ -32,6 +31,11 @@ export const todosReducer = (state = [], action) => {
                     createdAt: moment().unix(),
                     completedAt: undefined
                 }
+            ];
+        case 'TOGGLE_TODOS':
+            return [
+                ...state,
+                ...action.todos
             ];
         case 'TOGGLE_TODO':
             return state.map((todo) => {
