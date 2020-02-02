@@ -2,6 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 const expect = require('expect');
 
+import firebase, {firebaseRef} from "app/firebase";
 const actions = require('actions');
 
 const createMockStore = configureMockStore([thunk]);
@@ -75,13 +76,58 @@ describe('Actions', () => {
         expect(res).toEqual(action);
     });
 
-    it('should generate toggle todo action', () => {
+    it('should generate update todo action', () => {
         const action = {
-            type: 'TOGGLE_TODO',
-            id: '123'
+            type: 'UPDATE_TODO',
+            id: '123',
+            updates: {completed: false}
         };
-        const res = actions.toggleTodo(action.id);
+        const res = actions.updateTodo(action.id, action.updates);
 
         expect(res).toEqual(action);
+    });
+});
+
+
+describe('Test with Firebase todos', () => {
+    let testTodoRef;
+
+    beforeEach((done) => {
+        testTodoRef = firebaseRef.child('todos').push();
+
+        // Todo: Ist das nicht mist, wenn der Test die echte DB manipuliert??
+        testTodoRef.set({
+            text: 'Someting to do',
+            completed: false,
+            createdAt: 12313212
+        }).then(() => done());
+    });
+
+    afterEach((done) => {
+        testTodoRef.remove().then(() => done());
+    });
+
+    it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
+        const store = createMockStore();
+        console.log('*** testTodoRef.key ***', testTodoRef.key);
+        const action = actions.startToggleTodo(testTodoRef.key, true);
+
+        store.dispatch(action).then(() => {
+            const mockActions = store.getActions();
+
+            expect(mockActions[0]).toInclude({
+                type: 'UPDATE_TODO',
+                id: testTodoRef.key
+            });
+
+            expect(mockActions[0].updates).toInclude({
+                completed: true
+            });
+
+            expect(mockActions[0].updates.completedAt).toExist();
+
+            done();
+        }, done);
+
     });
 });
