@@ -21,13 +21,6 @@ export const addTodo = (todo) => {
     };
 };
 
-export const addTodos = (todos) => {
-    return {
-        type: 'ADD_TODOS',
-        todos
-    };
-};
-
 export const startAddTodo = (text) => {
     return (dispatch, getState) => {
         const todo = {
@@ -43,6 +36,33 @@ export const startAddTodo = (text) => {
                 ...todo,
                 id: todoRef.key
             }));
+        });
+    };
+};
+
+
+export const addTodos = (todos) => {
+    return {
+        type: 'ADD_TODOS',
+        todos
+    };
+};
+
+export const startAddTodos = () => {
+    return (dispatch, getState) => {
+        const todoRef = firebaseRef.child('todos');
+        return todoRef.once('value').then((snapshot) => {
+            const todos = snapshot.val() || {};
+            let parsedTodos = [];
+            // Extract object keys and put then into an array
+            Object.keys(todos).forEach((todoId) => {
+                parsedTodos.push({
+                    id: todoId,
+                    ...todos[todoId]
+                });
+            });
+
+            dispatch(addTodos(parsedTodos));
         });
     };
 };
