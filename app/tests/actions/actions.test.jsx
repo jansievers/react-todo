@@ -24,9 +24,14 @@ describe('Actions', () => {
     it('should generate add todo action', () => {
         const action = {
             type: 'ADD_TODO',
-            text: 'Thing to do'
+            todo: {
+                id: '123a',
+                text: 'Woergel',
+                completed: false,
+                createdAt: 0
+            }
         };
-        const res = actions.addTodo(action.text);
+        const res = actions.addTodo(action.todo);
 
         expect(res).toEqual(action);
     });
