@@ -51,6 +51,7 @@ export const addTodos = (todos) => {
 export const startAddTodos = () => {
     return (dispatch, getState) => {
         const todoRef = firebaseRef.child('todos');
+
         return todoRef.once('value').then((snapshot) => {
             const todos = snapshot.val() || {};
             let parsedTodos = [];
@@ -61,7 +62,6 @@ export const startAddTodos = () => {
                     ...todos[todoId]
                 });
             });
-
             dispatch(addTodos(parsedTodos));
         });
     };

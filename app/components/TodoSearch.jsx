@@ -9,6 +9,7 @@ export const TodoSearch = React.createClass({
         return (
             <div className="container__header">
                 <div>
+                    <em>Todo: clear search "x"</em>
                     <input type="search" ref="searchText" placeholder="Search todos" value={searchText}
                            onChange={
                                () => {
