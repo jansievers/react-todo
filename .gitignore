@@ -1,3 +1,5 @@
 node_modules/
 .idea/
 public/bundle.js
+config/development.env
+config/test.env
