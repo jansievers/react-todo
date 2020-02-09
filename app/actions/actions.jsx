@@ -8,6 +8,12 @@ export const setSearchText = (searchText) => {
     };
 };
 
+export const clearSearchText = () => {
+    return {
+        type: 'CLEAR_SEARCH_TEXT'
+    };
+};
+
 export const toggleShowCompleted = () => {
     return {
         type: 'TOGGLE_SHOW_COMPLETED'

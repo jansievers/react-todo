@@ -10,9 +10,23 @@
   border-bottom: 1px solid $light-grey-border;
   padding: 1rem;
 
+  .clear-search {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+  }
+
   label {
     cursor: pointer;
     font-size: 1rem;
+  }
+
+  input {
+    padding-right: 30px!important;
+  }
+
+  > :first-child {
+    position: relative;
   }
 
   > :last-child {

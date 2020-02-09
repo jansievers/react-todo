@@ -14,6 +14,15 @@ describe('Reducers', () => {
 
             expect(res).toEqual(action.searchText);
         });
+
+        it('should clear the searchText', () => {
+            const action = {
+                type: 'CLEAR_SEARCH_TEXT'
+            };
+            const res = reducers.searchTextReducer(df('Entered text'), df(action));
+
+            expect(res).toEqual('');
+        });
     });
 
     describe('showCompletedReducer', () => {

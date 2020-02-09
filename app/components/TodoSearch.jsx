@@ -3,13 +3,32 @@ const {connect} = require('react-redux');
 const actions = require('actions');
 
 export class TodoSearch extends React.Component {
+    constructor(props) {
+        super(props);
+        // this.clearSearchInput = this.clearSearchInput.bind(this);
+    }
+
+    /*
+    Todo: Wieso läuft das so nicht?
+    clearSearchInput(e) {
+        e.preventDefault();
+        const {dispatch} = this.props;
+        dispatch(actions.clearSearchText());
+    }
+    */
+
     render() {
         const {dispatch, showCompleted, searchText} = this.props;
 
         return (
             <div className="container__header">
                 <div>
-                    <em>Todo: clear search "x"</em>
+                    <a onClick={
+                        (e) => {
+                            e.preventDefault();
+                            dispatch(actions.clearSearchText());
+                        }
+                    } href="#" className="clear-search">x</a>
                     <input type="search" ref="searchText" placeholder="Search todos" value={searchText}
                            onChange={
                                () => {
