@@ -1,4 +1,4 @@
-var $ = require('jquery');
+const $ = require('jquery');
 
 module.exports = {
   /*
@@ -22,7 +22,7 @@ module.exports = {
   },
    */
   filterTodos: function (todos, showCompleted, searchText) {
-    var filteredTodos = todos;
+    let filteredTodos = todos;
 
     // Filter by showCompleted
     filteredTodos = filteredTodos.filter((todo) => {
@@ -31,8 +31,8 @@ module.exports = {
 
     // Filter by searchText
     filteredTodos = filteredTodos.filter((todo) => {
-      var text = todo.text.toLowerCase();
-      return searchText.length === 0 || text.indexOf(searchText) > -1;
+      const text = todo.text.toLowerCase();
+      return searchText.length === 0 || text.indexOf(searchText.toLowerCase()) > -1;
     });
 
     // Sort todos with non-completed first
