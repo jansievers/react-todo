@@ -23,7 +23,8 @@ export class TodoSearch extends React.Component {
         return (
             <div className="container__header">
                 <div>
-                    <a onClick={
+                    <a
+                        onClick={
                         (e) => {
                             e.preventDefault();
                             dispatch(actions.clearSearchText());
