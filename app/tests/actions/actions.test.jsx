@@ -50,7 +50,6 @@ describe('Actions', () => {
 
         store.dispatch(actions.startAddTodo(todoText)).then(() => {
             const actions = store.getActions();
-            console.log('*** actions ***', actions);
             expect(actions[0]).toInclude({
                 type: 'ADD_TODO'
             });
@@ -117,7 +116,6 @@ describe('Test with Firebase todos', () => {
 
     it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
         const store = createMockStore();
-        // console.log('*** testTodoRef.key ***', testTodoRef.key);
         const action = actions.startToggleTodo(testTodoRef.key, true);
 
         store.dispatch(action).then(() => {
@@ -146,7 +144,6 @@ describe('Test with Firebase todos', () => {
         store.dispatch(action)
             .then(() => {
                 const mockActions = store.getActions();
-                console.log('*** mockActions ***', mockActions[0].todos);
 
                 expect(mockActions[0].type).toEqual('ADD_TODOS');
                 expect(mockActions[0].todos.length).toEqual(1);

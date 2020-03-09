@@ -1,6 +1,3 @@
-const uuid = require('node-uuid');
-const moment = require('moment');
-
 export const searchTextReducer = (state = '', action) => {
     switch (action.type) {
         case 'SET_SEARCH_TEXT':
@@ -25,7 +22,7 @@ export const todosReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return [
-                ...state,
+                ...state, // Spread operater for merging arrays easily
                 action.todo
             ];
         case 'TOGGLE_TODOS':

@@ -4,7 +4,7 @@ const actions = require('actions');
 
 export class AddTodo extends React.Component {
     constructor() {
-        super();
+        super(); // Needed to get all props and stuff from original React Class
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -15,6 +15,7 @@ export class AddTodo extends React.Component {
 
         if (todoText.length > 0) {
             this.refs.todoText.value = '';
+            // 👉
             dispatch(actions.startAddTodo(todoText));
         } else {
             this.refs.todoText.focus();
@@ -60,4 +61,4 @@ export var AddTodo = React.createClass({
 });
 */
 
-export default connect()(AddTodo);
+export default connect()(AddTodo); // Export and connect to store

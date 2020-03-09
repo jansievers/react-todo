@@ -3,7 +3,7 @@ import firebase from 'firebase';
 try {
     // Your web app's Firebase configuration
     const firebaseConfig = {
-        apiKey: process.env.API_KEY, // "AIzaSyBh5SHUMtdWAY_PzKHSJ2cZwaC4Fto0swk",
+        apiKey: process.env.API_KEY,
         authDomain: process.env.AUTH_DOMAIN,
         databaseURL: process.env.DATABASE_URL,
         projectId: process.env.PROJECT_ID,

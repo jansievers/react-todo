@@ -4,6 +4,7 @@ import TodoList from 'TodoList'
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 
+// Of course you can write React in modern JS 🎉
 class TodoApp extends React.Component {
     render() {
         return(

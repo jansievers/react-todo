@@ -5,6 +5,7 @@ const actions = require('actions');
 
 export class Todo extends React.Component {
     render() {
+        // Get vars via ES6 destructuring
         const {id, text, completed, createdAt, completedAt, dispatch} = this.props;
         const todoClassName = completed ? 'todo todo-completed' : 'todo';
         const renderDate = () => {
@@ -19,6 +20,7 @@ export class Todo extends React.Component {
             return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a');
         };
 
+        // Same: Checked a todo dispaches an action...
         return (
             <div className={todoClassName} onClick={() => {
                 dispatch(actions.startToggleTodo(id, !completed));

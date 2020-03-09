@@ -35,8 +35,10 @@ export const startAddTodo = (text) => {
             createdAt: moment().unix(),
             completedAt: null
         };
+        // Update database
         const todoRef = firebaseRef.child('todos').push(todo);
 
+        // Update UI
         return todoRef.then(() => {
             dispatch(addTodo({
                 ...todo,
@@ -54,6 +56,7 @@ export const addTodos = (todos) => {
     };
 };
 
+// Initially add all todos
 export const startAddTodos = () => {
     return (dispatch, getState) => {
         const todoRef = firebaseRef.child('todos');
@@ -83,14 +86,14 @@ export const updateTodo = (id, updates) => {
 
 export const startToggleTodo = (id, completed) => {
     return (dispatch, getState) => {
-        const todoRef = firebaseRef.child(`todos/${id}`);
+        const todoRef = firebaseRef.child(`todos/${id}`); // Select checked todo from firebase
         const updates = {
            completed,
            completedAt: completed ? moment().unix() : null
         };
-
+        // Update DB then update UI...
         return todoRef.update(updates).then(() => {
-            dispatch(updateTodo(id, updates));
+            dispatch(updateTodo(id, updates)); 
         }).catch();
     };
 };

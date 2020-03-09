@@ -6,6 +6,7 @@ const TodoAPI = require('TodoAPI');
 export class TodoList extends React.Component {
     render() {
         const {todos, showCompleted, searchText} = this.props;
+
         const renderTodos = () => {
             const filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
             if (filteredTodos.length === 0) {
@@ -21,6 +22,7 @@ export class TodoList extends React.Component {
             });
         };
 
+        // In Angular we have *ngFor. React does not have this, lists will be solved via functions
         return (
             <div>
                 {renderTodos()}
@@ -59,6 +61,7 @@ export var TodoList = React.createClass({
 */
 
 export default connect(
+    // Auto-magic apply state to props
     (state) => {
         return state;
     }

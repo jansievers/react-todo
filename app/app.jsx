@@ -6,14 +6,16 @@ const TodoApp = require('TodoApp');
 const actions = require('actions');
 const store = require('configureStore').configure();
 
+// Initially fill todo list...
 store.dispatch(actions.startAddTodos());
 
 // Load foundation
 $(document).foundation();
 
-// App css
+// Provide CSS also via Webpack
 require('style!css!sass!applicationStyles');
 
+// 2. Wire up to HTML and store ⚙️
 ReactDOM.render(
     <Provider store={store}>
         <TodoApp/>
